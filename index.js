@@ -2,14 +2,14 @@ const bodyParser = require('body-parser');
 const { generateOtp } = require('./otpGenerator');
 const express = require('express');
 const app = express();
+require('dotenv').config();
+
 const twilio = require('twilio');
 
 // Twilio credentials
-const accountSid = 'REDACTED'; // Replace with your Twilio account SID
-const authToken = 'REDACTED';   // Replace with your Twilio auth token
 const twilioPhone = '+17754179727';     // Replace with your Twilio phone number
 
-const client = twilio(accountSid, authToken);
+const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 app.use(bodyParser.json());
 
