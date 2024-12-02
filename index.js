@@ -29,7 +29,7 @@ app.post('/generateOTP', async (req, res) => {
     }
     try {
         const otp = generateOtp();
-        await redisClient.setEx(phone, 300, otp);
+        await redisClient.setEx(phone, 900, otp);
         console.log(`OTP for ${phone} stored in Redis: ${otp}`);
         const message = await client.messages.create({
             body: `Your OTP is ${otp}`,
