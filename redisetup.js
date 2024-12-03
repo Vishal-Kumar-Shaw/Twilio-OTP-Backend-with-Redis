@@ -2,7 +2,7 @@
 const redis = require('redis');
 // Configure Redis client
 const redisClient = redis.createClient({
-    url: 'redis://localhost:6379', // Change to your Redis server URL
+    url: process.env.REDIS_URL, // Change to your Redis server URL
 });
 
 const connectRedis = async () => {
