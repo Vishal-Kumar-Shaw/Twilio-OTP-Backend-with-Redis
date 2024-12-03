@@ -19,7 +19,7 @@ connectRedis();
 
 
 app.get('/',(req, res)=>{
-    return res.json({message: "Hom route hitted"});
+    return res.json({message: "Home route hitted of Vishal Kumar Shaw's OTP project"});
 })
 app.post('/generateOTP', async (req, res) => {
     const { phone } = req.body;
@@ -46,15 +46,11 @@ app.post('/generateOTP', async (req, res) => {
 
 app.post('/verifyOTP', async (req, res) => {
     const { phone, otp } = req.body;
-    console.log("here");
     if (!phone || !otp) {
         return res.status(400).json({ error: 'Phone and OTP are required' });
     }
-    console.log(phone);
-    console.log(otp);
     try {
         const storedOtp = await redisClient.get(phone);
-        console.log(storedOtp);
         if (!storedOtp) {
             return res.status(400).json({ success: false, error: 'OTP not found or expired' });
         }
@@ -71,7 +67,7 @@ app.post('/verifyOTP', async (req, res) => {
     }
 });
 
-app.listen(3000, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log("Server is running");
 })
 
