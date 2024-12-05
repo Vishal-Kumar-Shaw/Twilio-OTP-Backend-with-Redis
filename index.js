@@ -4,8 +4,10 @@ const { redisClient, connectRedis } = require('./redisetup')
 
 const express = require('express');
 const app = express();
-require('dotenv').config();
+const cors = require('cors');
 
+require('dotenv').config();
+app.use(cors());
 const twilio = require('twilio');
 
 // Twilio credentials
